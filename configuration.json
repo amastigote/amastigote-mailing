@@ -1,0 +1,15 @@
+{
+  "service_key": "",
+  "sender_account": {
+    "password": "",
+    "username": ""
+  },
+  "database": {
+    "address": "",
+    "password": ""
+  },
+  "scheduler": {
+    "trigger_everyday_at_hour_in_24h": "",
+    "trigger_everyday_at_minute": ""
+  }
+}
