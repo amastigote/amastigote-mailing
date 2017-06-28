@@ -1,6 +1,8 @@
 {
   "service_key": "",
-  "sender_account": {
+  "sender": {
+    "smtp_server_addr": "",
+    "smtp_server_port": 0,
     "password": "",
     "username": ""
   },

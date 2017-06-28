@@ -23,7 +23,8 @@ public class SchedulerManager {
         Trigger trigger = newTrigger()
                 .withIdentity("Mail Delivering Trigger")
                 .withSchedule(
-                        cronSchedule("0 16 18 * * ?").withMisfireHandlingInstructionIgnoreMisfires())
+                        cronSchedule("0 " + Main.getTriggerMin() + " " + Main.getTriggerHour() + " * * ?")
+                                .withMisfireHandlingInstructionIgnoreMisfires())
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);

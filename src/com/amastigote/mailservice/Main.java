@@ -11,9 +11,13 @@ import java.io.IOException;
 
 public class Main {
 
+    private static String SENDER_SERVER_ADDR;
     private static String SENDER_USR;
     private static String SENDER_PWD;
+    private static int SENDER_SERVER_PORT;
     private static String SERVICE_KEY;
+    private static short TRIGGER_HOUR;
+    private static short TRIGGER_MIN;
 
     public static void main(String[] args) {
         try {
@@ -39,13 +43,24 @@ public class Main {
     }
 
     private static void loadConfigurations() throws IOException, ParseException {
-        FileReader fileReader = new FileReader("configuration.json");
+//        FileReader fileReader = new FileReader("configuration.json");
+
+        /*
+         * For dev
+         */
+        FileReader fileReader = new FileReader("configuration-dev.json");
+
         JSONObject jsonObject = new JSONObject(new JSONParser()
                 .parse(fileReader).toString());
         SERVICE_KEY = jsonObject.getString("service_key");
-        JSONObject senderConfJSONObj = jsonObject.getJSONObject("sender_account");
+        JSONObject senderConfJSONObj = jsonObject.getJSONObject("sender");
         SENDER_PWD = senderConfJSONObj.getString("password");
         SENDER_USR = senderConfJSONObj.getString("username");
+        SENDER_SERVER_ADDR = senderConfJSONObj.getString("smtp_server_addr");
+        SENDER_SERVER_PORT = senderConfJSONObj.getInt("smtp_server_port");
+        JSONObject schedulerConfJSONObj = jsonObject.getJSONObject("scheduler");
+        TRIGGER_HOUR = (short) schedulerConfJSONObj.getInt("trigger_everyday_at_hour_in_24h");
+        TRIGGER_MIN = (short) schedulerConfJSONObj.getInt("trigger_everyday_at_minute");
     }
 
     /*
@@ -61,5 +76,21 @@ public class Main {
 
     public static String getServiceKey() {
         return SERVICE_KEY;
+    }
+
+    public static String getSenderServerAddr() {
+        return SENDER_SERVER_ADDR;
+    }
+
+    public static int getSenderServerPort() {
+        return SENDER_SERVER_PORT;
+    }
+
+    public static short getTriggerHour() {
+        return TRIGGER_HOUR;
+    }
+
+    public static short getTriggerMin() {
+        return TRIGGER_MIN;
     }
 }
