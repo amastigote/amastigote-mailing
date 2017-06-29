@@ -18,6 +18,9 @@ public class Main {
     private static String SERVICE_KEY;
     private static short TRIGGER_HOUR;
     private static short TRIGGER_MIN;
+    private static String DB_ADDR;
+    private static String DB_USR;
+    private static String DB_PWD;
 
     public static void main(String[] args) {
         try {
@@ -61,6 +64,10 @@ public class Main {
         JSONObject schedulerConfJSONObj = jsonObject.getJSONObject("scheduler");
         TRIGGER_HOUR = (short) schedulerConfJSONObj.getInt("trigger_everyday_at_hour_in_24h");
         TRIGGER_MIN = (short) schedulerConfJSONObj.getInt("trigger_everyday_at_minute");
+        JSONObject databaseConfJSONObj = jsonObject.getJSONObject("database");
+        DB_ADDR = databaseConfJSONObj.getString("address");
+        DB_USR = databaseConfJSONObj.getString("username");
+        DB_PWD = databaseConfJSONObj.getString("password");
     }
 
     /*
@@ -92,5 +99,17 @@ public class Main {
 
     public static short getTriggerMin() {
         return TRIGGER_MIN;
+    }
+
+    public static String getDbAddr() {
+        return DB_ADDR;
+    }
+
+    public static String getDbPwd() {
+        return DB_PWD;
+    }
+
+    public static String getDbUsr() {
+        return DB_USR;
     }
 }

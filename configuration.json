@@ -8,6 +8,7 @@
   },
   "database": {
     "address": "",
+    "username": "",
     "password": ""
   },
   "scheduler": {
