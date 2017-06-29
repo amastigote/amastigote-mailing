@@ -10,7 +10,13 @@ public class DeliveringJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        DeliveringCore.deliverTo("m@amastigote.com");
-        System.out.println("Deliver job fired at " + new Date() + ".");
+        try {
+            DeliveringCore.deliver(
+                    RemoteContentUtil.getValidatedMails(),
+                    MailBodyUtil.generateMailHTMLBody(RemoteContentUtil.getNewlyArchivedPages(0)));
+            System.out.println("Deliver job fired at " + new Date() + ".");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

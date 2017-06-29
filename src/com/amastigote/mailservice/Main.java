@@ -3,9 +3,7 @@ package com.amastigote.mailservice;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.quartz.SchedulerException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -26,30 +24,19 @@ public class Main {
         try {
             loadConfigurations();
             SchedulerManager.start();
-
-            /*
-             * Handle all the checked exceptions here.
-             */
-        } catch (FileNotFoundException e) {
-            System.out.println("Configuration file not found.");
-            System.exit(-1);
-        } catch (ParseException e) {
-            System.out.println("Configuration file parsing error.");
-            System.exit(-1);
-        } catch (IOException e) {
-            System.out.println("I/O exception.");
-            System.exit(-1);
-        } catch (SchedulerException e) {
-            System.out.println("Error when scheduling jobs.");
-            System.exit(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private static void loadConfigurations() throws IOException, ParseException {
-//        FileReader fileReader = new FileReader("configuration.json");
+        /*
+         * Uncomment the following code in product-env.
+         */
+        // FileReader fileReader = new FileReader("configuration.json");
 
         /*
-         * For dev
+         * For dev-env.
          */
         FileReader fileReader = new FileReader("configuration-dev.json");
 
