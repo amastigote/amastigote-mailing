@@ -20,6 +20,8 @@ public class Main {
     private static String DB_USR;
     private static String DB_PWD;
 
+    private static int lastId;
+
     public static void main(String[] args) {
         try {
             loadConfigurations();
@@ -43,6 +45,7 @@ public class Main {
         JSONObject jsonObject = new JSONObject(new JSONParser()
                 .parse(fileReader).toString());
         SERVICE_KEY = jsonObject.getString("service_key");
+        lastId = jsonObject.getInt("begin_from_page_id");
         JSONObject senderConfJSONObj = jsonObject.getJSONObject("sender");
         SENDER_PWD = senderConfJSONObj.getString("password");
         SENDER_USR = senderConfJSONObj.getString("username");
@@ -98,5 +101,13 @@ public class Main {
 
     public static String getDbUsr() {
         return DB_USR;
+    }
+
+    public static int getLastId() {
+        return lastId;
+    }
+
+    public static void setLastId(int lastId) {
+        Main.lastId = lastId;
     }
 }

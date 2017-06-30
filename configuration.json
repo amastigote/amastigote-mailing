@@ -1,5 +1,6 @@
 {
   "service_key": "",
+  "begin_from_page_id": 0,
   "sender": {
     "smtp_server_addr": "",
     "smtp_server_port": 0,

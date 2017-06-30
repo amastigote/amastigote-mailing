@@ -12,7 +12,7 @@ public class DeliveringCore {
         receiverEmails.forEach(e -> deliverTo(e, HTMLBody));
     }
 
-    private synchronized static void deliverTo(String receiverEmailAddress, String HTMLBody) {
+    private static void deliverTo(String receiverEmailAddress, String HTMLBody) {
         new Mailer(
                 Main.getSenderServerAddr(),
                 Main.getSenderServerPort(),

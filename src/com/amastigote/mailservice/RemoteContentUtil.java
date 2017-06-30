@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class RemoteContentUtil {
     private static final String sqlForMail = "SELECT mail FROM email_registry WHERE validated='1'";
-    private static final String sqlForPage = "SELECT name, url FROM item WHERE id>?";
+    private static final String sqlForPage = "SELECT name, url, id FROM item WHERE id>?";
     private static final ScriptEngine jsEngine = new ScriptEngineManager().getEngineByName("javascript");
 
     public static synchronized List<String> getValidatedMails() throws SQLException, ClassNotFoundException {
@@ -29,8 +29,15 @@ public class RemoteContentUtil {
             add(previousId);
         }});
         Map<String, String> newlyArchivedPages = new HashMap<>();
-        while (resultSet.next())
-            newlyArchivedPages.put((String) jsEngine.eval("unescape(\"" + resultSet.getString("name") + "\")"), resultSet.getString("url"));
+        int lastId = Main.getLastId();
+        while (resultSet.next()) {
+            newlyArchivedPages
+                    .put(
+                            (String) jsEngine.eval("unescape(\"" + resultSet.getString("name") + "\")"),
+                            resultSet.getString("url"));
+            lastId = resultSet.getInt("id");
+        }
+        Main.setLastId(lastId);
         return newlyArchivedPages;
     }
 }
