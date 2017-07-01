@@ -34,30 +34,23 @@ public class RemoteContentUtil {
         int lastId = Main.getLastId();
         while (resultSet.next()) {
             lastId = resultSet.getInt("id");
-            List<String> tags = new ArrayList<>();
-            int finalLastId = lastId;
-            ResultSet resultSetForTag = DataSourceCore.doQuery(sqlForTag, new ArrayList<Object>() {{
-                add(finalLastId);
-            }});
-            while (resultSetForTag.next())
-                tags.add((String) jsEngine.eval("unescape(\"" + resultSetForTag.getString("name") + "\")"));
             pages.add(new Page()
                     .setTitle((String) jsEngine.eval("unescape(\"" + resultSet.getString("name") + "\")"))
                     .setUrl(resultSet.getString("url"))
-                    .setTags(tags)
+                    .setTags(getTags(lastId))
             );
         }
         Main.setLastId(lastId);
         return pages;
     }
 
-    private static synchronized List<String> getTags(int itemId) throws SQLException, ClassNotFoundException {
+    private static List<String> getTags(int itemId) throws SQLException, ClassNotFoundException, ScriptException {
         ResultSet resultSet = DataSourceCore.doQuery(sqlForTag, new ArrayList<Object>() {{
             add(itemId);
         }});
         List<String> tags = new ArrayList<>();
         while (resultSet.next())
-            tags.add(resultSet.getString("name"));
+            tags.add((String) jsEngine.eval("unescape(\"" + resultSet.getString("name") + "\")"));
         return tags;
     }
 }
