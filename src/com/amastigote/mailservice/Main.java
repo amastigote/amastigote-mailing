@@ -1,5 +1,6 @@
 package com.amastigote.mailservice;
 
+import com.amastigote.mailservice.util.SchedulerManager;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

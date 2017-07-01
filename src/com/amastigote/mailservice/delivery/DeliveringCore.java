@@ -1,5 +1,6 @@
-package com.amastigote.mailservice;
+package com.amastigote.mailservice.delivery;
 
+import com.amastigote.mailservice.Main;
 import org.simplejavamail.email.Email;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.Mailer;

@@ -1,12 +1,10 @@
-package com.amastigote.mailservice;
+package com.amastigote.mailservice.util;
 
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
+import com.amastigote.mailservice.Main;
+import com.amastigote.mailservice.delivery.DeliveringJob;
+import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
-import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
@@ -23,7 +21,7 @@ public class SchedulerManager {
         Trigger trigger = newTrigger()
                 .withIdentity("Mail Delivering Trigger")
                 .withSchedule(
-                        cronSchedule("0 " + Main.getTriggerMin() + " " + Main.getTriggerHour() + " * * ?")
+                        CronScheduleBuilder.cronSchedule("0 " + Main.getTriggerMin() + " " + Main.getTriggerHour() + " * * ?")
                                 .withMisfireHandlingInstructionIgnoreMisfires())
                 .build();
 
