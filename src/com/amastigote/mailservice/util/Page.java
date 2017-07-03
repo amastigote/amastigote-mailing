@@ -7,7 +7,7 @@ public class Page {
     private String url;
     private List<String> tags;
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
@@ -16,7 +16,7 @@ public class Page {
         return this;
     }
 
-    public String getUrl() {
+    String getUrl() {
         return url;
     }
 
@@ -25,7 +25,7 @@ public class Page {
         return this;
     }
 
-    public List<String> getTags() {
+    List<String> getTags() {
         return tags;
     }
 

@@ -1,6 +1,6 @@
 package com.amastigote.mailservice.remote;
 
-import com.amastigote.mailservice.Main;
+import com.amastigote.mailservice.delivery.DeliverJob;
 import com.amastigote.mailservice.util.Page;
 
 import javax.script.ScriptEngine;
@@ -31,7 +31,7 @@ public class RemoteContentUtil {
             add(previousId);
         }});
         List<Page> pages = new ArrayList<>();
-        int lastId = Main.getLastId();
+        int lastId = DeliverJob.getLastId();
         while (resultSet.next()) {
             lastId = resultSet.getInt("id");
             pages.add(new Page()
@@ -40,7 +40,7 @@ public class RemoteContentUtil {
                     .setTags(getTags(lastId))
             );
         }
-        Main.setLastId(lastId);
+        DeliverJob.setLastId(lastId);
         return pages;
     }
 
