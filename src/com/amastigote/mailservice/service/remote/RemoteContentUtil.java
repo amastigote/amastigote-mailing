@@ -1,7 +1,7 @@
-package com.amastigote.mailservice.remote;
+package com.amastigote.mailservice.service.remote;
 
-import com.amastigote.mailservice.delivery.DeliverJob;
-import com.amastigote.mailservice.util.Page;
+import com.amastigote.mailservice.service.delivery.DeliverJob;
+import com.amastigote.mailservice.service.util.Page;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;

@@ -15,5 +15,6 @@
   "scheduler": {
     "trigger_everyday_at_hour_in_24h": 0,
     "trigger_everyday_at_minute": 0
-  }
+  },
+  "mail_validation_server_url": ""
 }

@@ -1,4 +1,4 @@
-package com.amastigote.mailservice.util;
+package com.amastigote.mailservice;
 
 public class Configuration {
     private static String SENDER_SERVER_ADDR;
@@ -11,6 +11,15 @@ public class Configuration {
     private static String DB_ADDR;
     private static String DB_USR;
     private static String DB_PWD;
+    private static String MAIL_VALIDATION_SERVER_URL;
+
+    public static String getMailValidationServerUrl() {
+        return MAIL_VALIDATION_SERVER_URL;
+    }
+
+    public static void setMailValidationServerUrl(String mailValidationServerUrl) {
+        MAIL_VALIDATION_SERVER_URL = mailValidationServerUrl;
+    }
 
     public static String getSenderServerAddr() {
         return SENDER_SERVER_ADDR;

@@ -1,6 +1,6 @@
-package com.amastigote.mailservice.remote;
+package com.amastigote.mailservice.service.remote;
 
-import com.amastigote.mailservice.util.Configuration;
+import com.amastigote.mailservice.Configuration;
 
 import java.sql.*;
 import java.util.List;

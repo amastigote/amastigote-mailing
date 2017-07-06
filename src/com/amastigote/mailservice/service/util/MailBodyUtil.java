@@ -1,4 +1,4 @@
-package com.amastigote.mailservice.util;
+package com.amastigote.mailservice.service.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

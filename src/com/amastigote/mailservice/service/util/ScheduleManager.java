@@ -1,6 +1,7 @@
-package com.amastigote.mailservice.util;
+package com.amastigote.mailservice.service.util;
 
-import com.amastigote.mailservice.delivery.DeliverJob;
+import com.amastigote.mailservice.Configuration;
+import com.amastigote.mailservice.service.delivery.DeliverJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 

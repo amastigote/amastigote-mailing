@@ -1,6 +1,6 @@
-package com.amastigote.mailservice.util;
+package com.amastigote.mailservice;
 
-import com.amastigote.mailservice.delivery.DeliverJob;
+import com.amastigote.mailservice.service.delivery.DeliverJob;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,6 +16,7 @@ public class ConfigurationManager {
                 .parse(fileReader).toString());
         DeliverJob.setLastId(jsonObject.getInt("begin_from_page_id"));
         Configuration.setServiceKey(jsonObject.getString("service_key"));
+        Configuration.setMailValidationServerUrl(jsonObject.getString("mail_validation_server_url"));
         JSONObject senderConfJSONObj = jsonObject.getJSONObject("sender");
         Configuration.setSenderPwd(senderConfJSONObj.getString("password"));
         Configuration.setSenderUsr(senderConfJSONObj.getString("username"));
