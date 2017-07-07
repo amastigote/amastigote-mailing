@@ -1,7 +1,7 @@
-package com.amastigote.mailservice.service.delivery;
+package com.amastigote.mailing.service.delivery;
 
-import com.amastigote.mailservice.Configuration;
-import com.amastigote.mailservice.service.util.SingleMailingTaskDetail;
+import com.amastigote.mailing.ConfigurationManager;
+import com.amastigote.mailing.service.util.SingleMailingTaskDetail;
 import org.simplejavamail.email.Email;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.Mailer;
@@ -10,16 +10,16 @@ public class DeliverCore {
 
     public static void deliver(SingleMailingTaskDetail singleMailingTaskDetail) {
         new Mailer(
-                Configuration.getSenderServerAddr(),
-                Configuration.getSenderServerPort(),
-                Configuration.getSenderUsr(),
-                Configuration.getSenderPwd())
+                ConfigurationManager.getSenderServerAddr(),
+                ConfigurationManager.getSenderServerPort(),
+                ConfigurationManager.getSenderUsr(),
+                ConfigurationManager.getSenderPwd())
                 .sendMail(buildMail(singleMailingTaskDetail));
     }
 
     private static Email buildMail(SingleMailingTaskDetail singleMailingTaskDetail) {
         return new EmailBuilder()
-                .from(singleMailingTaskDetail.getSender(), Configuration.getSenderUsr())
+                .from(singleMailingTaskDetail.getSender(), ConfigurationManager.getSenderUsr())
                 .to("", singleMailingTaskDetail.getDestination())
                 .subject(singleMailingTaskDetail.getSubject())
                 .textHTML(singleMailingTaskDetail.getHtmlBody())

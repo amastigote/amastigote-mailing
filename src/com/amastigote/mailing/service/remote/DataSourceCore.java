@@ -1,14 +1,14 @@
-package com.amastigote.mailservice.service.remote;
+package com.amastigote.mailing.service.remote;
 
-import com.amastigote.mailservice.Configuration;
+import com.amastigote.mailing.ConfigurationManager;
 
 import java.sql.*;
 import java.util.List;
 
 class DataSourceCore {
-    private static String url = "jdbc:mysql://" + Configuration.getDbAddr() + "?useUnicode=true&characterEncoding=utf-8";
-    private static String usr = Configuration.getDbUsr();
-    private static String pwd = Configuration.getDbPwd();
+    private static String url = "jdbc:mysql://" + ConfigurationManager.getDbAddr() + "?useUnicode=true&characterEncoding=utf-8";
+    private static String usr = ConfigurationManager.getDbUsr();
+    private static String pwd = ConfigurationManager.getDbPwd();
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");

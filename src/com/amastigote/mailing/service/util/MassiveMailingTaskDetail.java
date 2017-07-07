@@ -1,4 +1,4 @@
-package com.amastigote.mailservice.service.util;
+package com.amastigote.mailing.service.util;
 
 import java.util.List;
 

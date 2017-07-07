@@ -1,8 +1,8 @@
-package com.amastigote.mailservice.service;
+package com.amastigote.mailing.service;
 
-import com.amastigote.mailservice.service.delivery.DeliverCore;
-import com.amastigote.mailservice.service.util.MassiveMailingTaskDetail;
-import com.amastigote.mailservice.service.util.SingleMailingTaskDetail;
+import com.amastigote.mailing.service.delivery.DeliverCore;
+import com.amastigote.mailing.service.util.MassiveMailingTaskDetail;
+import com.amastigote.mailing.service.util.SingleMailingTaskDetail;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

@@ -1,8 +1,8 @@
-package com.amastigote.mailservice.service.util;
+package com.amastigote.mailing.service.util;
 
 import java.util.List;
 
-public class Page {
+public class PageDetail {
     private String title;
     private String url;
     private List<String> tags;
@@ -11,7 +11,7 @@ public class Page {
         return title;
     }
 
-    public Page setTitle(String title) {
+    public PageDetail setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -20,7 +20,7 @@ public class Page {
         return url;
     }
 
-    public Page setUrl(String url) {
+    public PageDetail setUrl(String url) {
         this.url = url;
         return this;
     }
@@ -29,7 +29,7 @@ public class Page {
         return tags;
     }
 
-    public Page setTags(List<String> tags) {
+    public PageDetail setTags(List<String> tags) {
         this.tags = tags;
         return this;
     }

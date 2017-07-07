@@ -1,10 +1,10 @@
-package com.amastigote.mailservice.service.delivery;
+package com.amastigote.mailing.service.delivery;
 
-import com.amastigote.mailservice.service.MailingTaskManager;
-import com.amastigote.mailservice.service.remote.RemoteContentUtil;
-import com.amastigote.mailservice.service.util.MailBodyUtil;
-import com.amastigote.mailservice.service.util.MassiveMailingTaskDetail;
-import com.amastigote.mailservice.service.util.Page;
+import com.amastigote.mailing.service.MailingTaskManager;
+import com.amastigote.mailing.service.remote.RemoteContentUtil;
+import com.amastigote.mailing.service.util.MailBodyUtil;
+import com.amastigote.mailing.service.util.MassiveMailingTaskDetail;
+import com.amastigote.mailing.service.util.PageDetail;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -27,12 +27,12 @@ public class DeliverJob implements Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try {
             System.out.println("[amastigote] Deliver job fired at " + new Date() + ".");
-            List<Page> pages = RemoteContentUtil.getNewlyArchivedPages(lastId);
-            if (pages.size() > 0)
+            List<PageDetail> pageDetails = RemoteContentUtil.getNewlyArchivedPages(lastId);
+            if (pageDetails.size() > 0)
                 MailingTaskManager.queueTask(
                         new MassiveMailingTaskDetail()
                                 .setDestinations(RemoteContentUtil.getValidatedMails())
-                                .setHtmlBody(MailBodyUtil.generateMailHTMLBody(pages))
+                                .setHtmlBody(MailBodyUtil.generateMailBody(pageDetails))
                                 .setSubject("Pages Collected Today on Amastigote")
                                 .setSender("Amastigote Daily")
                 );

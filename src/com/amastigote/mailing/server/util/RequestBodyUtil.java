@@ -1,4 +1,4 @@
-package com.amastigote.mailservice.server.util;
+package com.amastigote.mailing.server.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

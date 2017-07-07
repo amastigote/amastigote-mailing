@@ -1,7 +1,7 @@
-package com.amastigote.mailservice.service.remote;
+package com.amastigote.mailing.service.remote;
 
-import com.amastigote.mailservice.service.delivery.DeliverJob;
-import com.amastigote.mailservice.service.util.Page;
+import com.amastigote.mailing.service.delivery.DeliverJob;
+import com.amastigote.mailing.service.util.PageDetail;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -26,22 +26,22 @@ public class RemoteContentUtil {
         return validatedMails;
     }
 
-    public static synchronized List<Page> getNewlyArchivedPages(int previousId) throws SQLException, ClassNotFoundException, UnsupportedEncodingException, ScriptException {
+    public static synchronized List<PageDetail> getNewlyArchivedPages(int previousId) throws SQLException, ClassNotFoundException, UnsupportedEncodingException, ScriptException {
         ResultSet resultSet = DataSourceCore.doQuery(sqlForPage, new ArrayList<Object>() {{
             add(previousId);
         }});
-        List<Page> pages = new ArrayList<>();
+        List<PageDetail> pageDetails = new ArrayList<>();
         int lastId = DeliverJob.getLastId();
         while (resultSet.next()) {
             lastId = resultSet.getInt("id");
-            pages.add(new Page()
+            pageDetails.add(new PageDetail()
                     .setTitle((String) jsEngine.eval("unescape(\"" + resultSet.getString("name") + "\")"))
                     .setUrl(resultSet.getString("url"))
                     .setTags(getTags(lastId))
             );
         }
         DeliverJob.setLastId(lastId);
-        return pages;
+        return pageDetails;
     }
 
     private static List<String> getTags(int itemId) throws SQLException, ClassNotFoundException, ScriptException {

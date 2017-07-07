@@ -1,7 +1,7 @@
-package com.amastigote.mailservice.service.util;
+package com.amastigote.mailing.service.util;
 
-import com.amastigote.mailservice.Configuration;
-import com.amastigote.mailservice.service.delivery.DeliverJob;
+import com.amastigote.mailing.ConfigurationManager;
+import com.amastigote.mailing.service.delivery.DeliverJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -22,7 +22,7 @@ public class ScheduleManager {
                 .withIdentity("Mail Delivering Trigger")
                 .withSchedule(
                         CronScheduleBuilder.cronSchedule(
-                                "0 " + Configuration.getTriggerMin() + " " + Configuration.getTriggerHour() + " * * ?"
+                                "0 " + ConfigurationManager.getTriggerMin() + " " + ConfigurationManager.getTriggerHour() + " * * ?"
                         ).withMisfireHandlingInstructionIgnoreMisfires())
                 .build();
 

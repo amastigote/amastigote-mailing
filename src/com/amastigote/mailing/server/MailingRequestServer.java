@@ -1,4 +1,4 @@
-package com.amastigote.mailservice.server;
+package com.amastigote.mailing.server;
 
 import com.sun.net.httpserver.HttpServer;
 
