@@ -3,6 +3,7 @@ package com.amastigote.mailing.service;
 import com.amastigote.mailing.service.delivery.DeliverCore;
 import com.amastigote.mailing.service.util.MassiveMailingTaskDetail;
 import com.amastigote.mailing.service.util.SingleMailingTaskDetail;
+import org.apache.commons.mail.EmailException;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -40,7 +41,7 @@ public class MailingTaskManager {
                         DeliverCore.deliver(singleMailingTaskDetail);
                         Thread.sleep(10000);
                     }
-                } catch (InterruptedException e) {
+                } catch (InterruptedException | EmailException e) {
                     e.printStackTrace();
                 }
             }).start();

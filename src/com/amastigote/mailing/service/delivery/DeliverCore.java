@@ -2,27 +2,24 @@ package com.amastigote.mailing.service.delivery;
 
 import com.amastigote.mailing.ConfigurationManager;
 import com.amastigote.mailing.service.util.SingleMailingTaskDetail;
-import org.simplejavamail.email.Email;
-import org.simplejavamail.email.EmailBuilder;
-import org.simplejavamail.mailer.Mailer;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 
 public class DeliverCore {
 
-    public static void deliver(SingleMailingTaskDetail singleMailingTaskDetail) {
-        new Mailer(
-                ConfigurationManager.getSenderServerAddr(),
-                ConfigurationManager.getSenderServerPort(),
-                ConfigurationManager.getSenderUsr(),
-                ConfigurationManager.getSenderPwd())
-                .sendMail(buildMail(singleMailingTaskDetail));
+    public static void deliver(SingleMailingTaskDetail singleMailingTaskDetail) throws EmailException {
+        buildMail(singleMailingTaskDetail).send();
     }
 
-    private static Email buildMail(SingleMailingTaskDetail singleMailingTaskDetail) {
-        return new EmailBuilder()
-                .from(singleMailingTaskDetail.getSender(), ConfigurationManager.getSenderUsr())
-                .to("", singleMailingTaskDetail.getDestination())
-                .subject(singleMailingTaskDetail.getSubject())
-                .textHTML(singleMailingTaskDetail.getHtmlBody())
-                .build();
+    private static HtmlEmail buildMail(SingleMailingTaskDetail singleMailingTaskDetail) throws EmailException {
+        HtmlEmail htmlEmail = new HtmlEmail();
+        htmlEmail.setHostName(ConfigurationManager.getSenderServerAddr());
+        htmlEmail.setSmtpPort(ConfigurationManager.getSenderServerPort());
+        htmlEmail.setAuthentication(ConfigurationManager.getSenderUsr(), ConfigurationManager.getSenderPwd());
+        htmlEmail.setFrom(ConfigurationManager.getSenderUsr(), singleMailingTaskDetail.getSender());
+        htmlEmail.addTo(singleMailingTaskDetail.getDestination());
+        htmlEmail.setSubject(singleMailingTaskDetail.getSubject());
+        htmlEmail.setHtmlMsg(singleMailingTaskDetail.getHtmlBody());
+        return htmlEmail;
     }
 }
