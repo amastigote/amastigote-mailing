@@ -11,7 +11,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class ScheduleManager {
     private static Scheduler scheduler;
 
-    public static void start() throws SchedulerException {
+    public static void startUp() throws SchedulerException {
         scheduler = StdSchedulerFactory.getDefaultScheduler();
         scheduler.start();
 

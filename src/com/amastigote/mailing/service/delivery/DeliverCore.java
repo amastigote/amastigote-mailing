@@ -20,6 +20,7 @@ public class DeliverCore {
         htmlEmail.addTo(singleMailingTaskDetail.getDestination());
         htmlEmail.setSubject(singleMailingTaskDetail.getSubject());
         htmlEmail.setHtmlMsg(singleMailingTaskDetail.getHtmlBody());
+        htmlEmail.setCharset(org.apache.commons.mail.EmailConstants.UTF_8);
         return htmlEmail;
     }
 }

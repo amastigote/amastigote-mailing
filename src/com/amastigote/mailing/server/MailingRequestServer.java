@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
 
 public class MailingRequestServer {
 
-    public static void start(int port) throws IOException {
+    public static void startUp(int port) throws IOException {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8081), 50);
         httpServer.createContext("/mail", new MailingRequestHandler());
         httpServer.start();

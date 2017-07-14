@@ -39,6 +39,10 @@ public class MailingTaskManager {
                     while (true) {
                         SingleMailingTaskDetail singleMailingTaskDetail = blockingQueue.take();
                         DeliverCore.deliver(singleMailingTaskDetail);
+
+                        /*
+                         * Mail delivery should be lowered to a fixed rate
+                         */
                         Thread.sleep(10000);
                     }
                 } catch (InterruptedException | EmailException e) {

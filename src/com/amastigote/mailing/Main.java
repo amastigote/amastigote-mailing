@@ -13,8 +13,8 @@ public class Main {
             else
                 ConfigurationManager.load();
             MailingTaskManager.startUp();
-            MailingRequestServer.start(8081);
-            ScheduleManager.start();
+            MailingRequestServer.startUp(8081);
+            ScheduleManager.startUp();
         } catch (Exception e) {
             e.printStackTrace();
         }
