@@ -11,6 +11,6 @@ public class MailingRequestServer {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8081), 50);
         httpServer.createContext("/mail", new MailingRequestHandler());
         httpServer.start();
-        System.out.println("[amastigote] Mailing request server is up");
+        System.out.println("[mail-req-server] Mailing request server is up");
     }
 }

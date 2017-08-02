@@ -110,7 +110,7 @@ public class ConfigurationManager {
     }
 
     static void load(String confFile) throws IOException, ParseException {
-        System.out.println("[amastigote] Using configuration: " + confFile);
+        System.out.println("[conf-manager] Using configuration: " + confFile);
         FileReader fileReader = new FileReader(confFile);
         JSONObject jsonObject = new JSONObject(new JSONParser()
                 .parse(fileReader).toString());

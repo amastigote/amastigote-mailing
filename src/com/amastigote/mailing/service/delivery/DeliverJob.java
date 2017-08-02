@@ -26,7 +26,7 @@ public class DeliverJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try {
-            System.out.println("[amastigote] Deliver job fired at " + new Date() + ".");
+            System.out.println("[deliver-job] Deliver job fired at " + new Date() + ".");
             List<PageDetail> pageDetails = RemoteContentUtil.getNewlyArchivedPages(lastId);
             if (pageDetails.size() > 0)
                 MailingTaskManager.queueTask(
@@ -36,7 +36,7 @@ public class DeliverJob implements Job {
                                 .setSubject("Pages Collected Today on Amastigote")
                                 .setSender("Amastigote Daily")
                 );
-            System.out.println("[amastigote] Deliver job submitted at " + new Date() + ".");
+            System.out.println("[deliver-job] Deliver job submitted at " + new Date() + ".");
         } catch (Exception e) {
             e.printStackTrace();
         }

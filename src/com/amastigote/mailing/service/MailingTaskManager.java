@@ -49,8 +49,8 @@ public class MailingTaskManager {
                     e.printStackTrace();
                 }
             }).start();
-            System.out.println("[amastigote] Mailing service is up");
+            System.out.println("[mail-tsk-manager] Mailing service is up");
         } else
-            System.out.println("[amastigote] Mailing service is already up, ignore");
+            System.out.println("[mail-tsk-manager] Mailing service is already up, ignore");
     }
 }
