@@ -17,6 +17,11 @@ public class Main {
             ScheduleManager.startUp();
         } catch (Exception e) {
             e.printStackTrace();
+
+            // TODO free exception handling down to certain class,
+            // TODO main class only handles exception thrown during startup
+            // TODO and exit the system if that happens
+            System.exit(0);
         }
     }
 }

@@ -9,11 +9,12 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 public class ScheduleManager {
-    private static Scheduler scheduler;
 
-    public static void startUp() throws SchedulerException {
-        scheduler = StdSchedulerFactory.getDefaultScheduler();
+    public static void startUp() throws SchedulerException, ClassNotFoundException {
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
         scheduler.start();
+
+        System.out.println("[sch-manager] Scheduler is up");
 
         JobDetail jobDetail = newJob(DeliverJob.class)
                 .withIdentity("Mail Delivering Job")
@@ -27,10 +28,5 @@ public class ScheduleManager {
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
-    }
-
-    public static void shutdown() throws SchedulerException {
-        if (scheduler != null)
-            scheduler.shutdown();
     }
 }

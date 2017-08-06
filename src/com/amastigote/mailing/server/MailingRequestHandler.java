@@ -16,7 +16,6 @@ public class MailingRequestHandler implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
         Map<String, String> reqParams = RequestBodyUtil.parse(httpExchange.getRequestBody());
         System.out.println("[mail-reg-handler] Receiving mailing request from " + httpExchange.getRemoteAddress());
-        reqParams.forEach((k, v) -> System.out.println(k + " -> " + v));
         System.out.println("[mail-reg-handler] Send to " + reqParams.get("mail") + " with hash " + reqParams.get("hash"));
         if (MailingTaskManager.queueTask(new SingleMailingTaskDetail()
                 .setDestination(reqParams.get("mail"))
