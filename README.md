@@ -1,6 +1,6 @@
 # amastigote-mailing
 
-Cooperative WebPage Archiving List for Groups/Teams/Individuals.
+Mailing service for amastigote platform version.
 
 Made with ❤ and solitude.
 
